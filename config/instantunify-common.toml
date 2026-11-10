@@ -1,0 +1,51 @@
+#Tag names that shouldn't be unified (supports regex)
+#A name written as '<tag>\/.+' covers the tag itself and everything below it
+blacklist = ["minecraft:.+", "forge:glass.+"]
+#Tag names that should be unified (supports regex)
+#A name written as '<tag>\/.+' covers the tag itself and everything below it
+whitelist = ["forge:ores\\/.+", "forge:ingots\\/.+", "forge:nuggets\\/.+", "forge:raw_materials\\/.+", "forge:storage_blocks\\/.+", "forge:gems\\/.+", "forge:dusts\\/.+", "forge:gears\\/.+", "forge:plates\\/.+", "forge:rods\\/.+", "forge:ores_in_ground\\/.+", "forge:silicon\\/.+", "c:ores\\/.+", "c:ingots\\/.+", "c:nuggets\\/.+", "c:raw_materials\\/.+", "c:storage_blocks\\/.+", "c:gems\\/.+", "c:dusts\\/.+", "c:gears\\/.+", "c:plates\\/.+", "c:rods\\/.+", "c:ores_in_ground\\/.+", "c:silicon\\/.+"]
+#How the two lists above are combined
+#Allowed Values: USE_WHITELIST, USE_BLACKLIST, USE_BOTH_LISTS, USE_NO_LIST
+listMode = "USE_BOTH_LISTS"
+#Preferred Mods: the first mod in this list that provides a material wins
+preferredMods = ["minecraft", "alltheores", "allthemodium", "ftbmaterials", "kubejs", "crafttweaker", "tconstruct", "thermal", "thermal_foundation", "mekanism", "create", "immersiveengineering", "occultism", "ae2", "chemlib", "biggerreactors", "silentgear", "botania", "thermal_extra", "industrialforegoing", "pneumaticcraft", "embers", "iceandfire", "refinedstorage", "enderio"]
+#Blacklisted Mods: their items are never replaced and never used as a target
+blacklistMods = ["chisel", "astralsorcery"]
+#Exempt Mods: their items are never replaced, but other mods' items may still turn into them
+#Use this for a mod that owns a material and should stay the way it is (AE2 silicon)
+exemptMods = ["ae2"]
+#Blacklisted Items: these item ids are never replaced (empty by default)
+blacklistItems = []
+#Tag names that should be unified even if they are different
+#One line per group, the names of a group separated by commas
+alternatives = ["aluminum,aluminium,bauxite"]
+#Namespaces that mean the same thing, the first entry of a group is the canonical one
+#One line per group, the names of a group separated by commas
+#Keeps items that only ship one of the two spellings (forge: and c:) in the same group
+namespaceAliases = ["forge,c"]
+#Never unify two items of the same mod with each other
+#On by default: mods ship variants that only make sense next to each other
+sameModNoUnify = true
+
+["Unify event"]
+	#Unify when items drop
+	drop = true
+	#Unify drops when entities die
+	death = true
+	#Unify every second items in player's inventory
+	second = false
+	#Unify items in player's inventory when they change
+	change = true
+	#Unify items when a container is opened (writes into containers)
+	gui = false
+	#Unify loot table output (block drops, mob drops, chests, fishing)
+	harvest = false
+
+[performance]
+	#Cache the material index (tag fingerprint -> dominant item) instead of scanning the item registry on every drop
+	#Turning this off restores the slow behaviour, useful for troubleshooting
+	indexCache = true
+	#Rebuild the material index automatically after this many seconds, 0 = rebuild only on tag/config changes
+	#Range: 0 ~ 86400
+	lazyIndexRefreshSeconds = 0
+
