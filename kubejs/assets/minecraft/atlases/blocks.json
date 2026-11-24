@@ -1,0 +1,8 @@
+{
+  "sources": [
+    { "type": "single", "resource": "kubejs:gas/ammonia" },
+    { "type": "single", "resource": "kubejs:gas/nitrogen_oxide" },
+    { "type": "single", "resource": "kubejs:gas/nitric_acid" },
+    { "type": "single", "resource": "kubejs:gas/rich_allthemodium_ammonia" }
+  ]
+}

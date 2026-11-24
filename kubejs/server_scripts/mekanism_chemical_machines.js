@@ -15,9 +15,12 @@
 //     A=#forge:gems/fluorite            X=steel_casing
 //
 // 改动后（材料数量不变，只换品类）：
-//   溶解室  ["ITI","CXC","ITI"]  I=强化合金 ×4，C=精英电路 ×2
+//   溶解室  ["ITI","CXC","ITI"]  I=灌注合金 ×4，C=高级电路 ×2   ← 再降一档（见下）
 //   洗涤机  ["IBI","CXC","ITI"]  I=强化合金 ×4，C=精英电路 ×2
 //   结晶器  ["IAI","CXC","IAI"]  I=强化合金 ×4，C=精英电路 ×2
+//
+// 溶解室的二次降档：强化合金与精英电路都依赖已被禁用的强化合金线，
+// 按需求把 C 从精英电路降到高级电路、I 从强化合金降到灌注合金。
 //
 // 写法说明：
 //   溶解室 / 洗涤机是 mekanism:mek_data 自定义序列化器，replaceInput 改不到 -> remove + event.custom 重建；
@@ -34,8 +37,8 @@ ServerEvents.recipes(event => {
   event.custom({
     type: 'mekanism:mek_data',
     key: {
-      C: { item: 'mekanism:elite_control_circuit' },
-      I: { item: 'mekanism:alloy_reinforced' },
+      C: { item: 'mekanism:advanced_control_circuit' },
+      I: { item: 'mekanism:alloy_infused' },
       T: { item: 'mekanism:basic_chemical_tank' },
       X: { item: 'mekanism:steel_casing' }
     },

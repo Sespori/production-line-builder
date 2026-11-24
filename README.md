@@ -35,7 +35,7 @@ config/                     # 改过的配置文件，覆盖到实例的 config/
 | `thermal_press_gears.js` | 为 Thermal 没有压印配方的 11 种材料补 `thermal:press` 齿轮配方（4 材料 + 齿轮模具，默认耗能） |
 | `thermal_bottler_hdpe.js` | 灌装机新增：100mb 乙烯 + 1 基质 → 2 颗 HDPE 颗粒，2000 RF |
 | `thermal_smelter_endgame_alloys.js` | 禁用感应炉里产出末影 / 流明 / 信素锭的全部 9 条配方（合金合成 + 粉尘回炉 + 板材回炉） |
-| `thermal_enderium_dust_recipe.js` | `thermal:enderium_dust_2`：钻石粉 → 铂粉 |
+| `thermal_enderium_dust_recipe.js` | `thermal:enderium_dust_2` 整条重建：钻石粉 → 铂粉；末影珍珠 / 末影珍珠粉 → 只接受 `thermal:ender_pearl_dust`（数量、产物、配方 ID 均不变；删除用「ID + 输入含末影珍珠 + 工作台类配方」三层过滤，另加 replaceInput 兜底） |
 | `disable_fire_charge_and_dust_recipes.js` | 禁用全部 11 条以火焰弹为材料的合成；禁用 AllTheOres 的 4 条合金粉尘手工配方 |
 
 ### 通用机械（Mekanism）
@@ -44,10 +44,18 @@ config/                     # 改过的配置文件，覆盖到实例的 config/
 |---|---|
 | `mekanism_alloy_infused.js` | `mekanism:alloy_infused`（冶金灌注）：铁锭 → `alltheores:steel_ingot` |
 | `mekanism_plastic_transparent.js` | 透明塑料块产出 8 → 2、普通塑料块产出 4 → 1 |
-| `mekanism_atomic_to_infused.js` | 数字采矿机 / 传送核心 / 机器人：原子合金 → 灌注合金；机器人另把精炼黑曜石锭 → 锇锭 |
+| `mekanism_atomic_to_infused.js` | 数字采矿机 / 传送核心 / 机器人 / 量子传送器：原子合金 → 灌注合金；机器人另把精炼黑曜石锭 → 锇锭；量子传送器另把终极电路 → 高级电路、精炼黑曜石锭 → 锇锭 |
 | `mekanism_tier_upgrades.js` | 净化仓 / 化学氧化机：灌注合金 → 强化合金，基础·高级电路 → 精英电路；蒸馏控制器 / 阀门：高级电路 → 精英电路 |
 | `mekanism_chemical_machines.js` | 化学溶解室 / 洗涤机 / 结晶器：精炼黑曜石锭 → 强化合金，终极电路 → 精英电路 |
 | `mekanism_pigment_mixer.js` | 颜料混合器：强化合金 → 灌注合金，精英电路 → 高级电路 |
+
+### 其他（AllTheOres / 自注册物品）
+
+| 脚本 | 内容 |
+|---|---|
+| `alltheores_platinum_dust_to_crude.js` | 铂产线拆分：5 条「矿石 / 粗铂直接制铂粉」的配方产物改为自注册的 `kubejs:crude_platinum_dust`（粗铂粉，富集仓 3 / 锤子 1 / 粉碎机 1）；另 6 条「铂矿石 / 粗铂熔炼或高炉出铂锭」的配方产物同样改为粗铂粉。原料含铂锭或脏铂粉的配方保持原样 |
+| `disable_ae2_fluix_transform.js` | 禁用 `ae2:transform/fluix_crystal`（充能赛特斯石英水晶 + 福鲁伊克斯粉浸水 → 福鲁伊克斯水晶）；同目录的「充能赛特斯 + 红石 + 石英 → 2 个」保留 |
+| `certus_quartz_multiply.js` | 赛特斯石英增殖环（照紫水晶那一对）：富集室 `赛特斯石英簇 → 3 赛特斯石英水晶`；结晶器 `2000 mB 水 + 1 水晶 → 1 赛特斯石英簇` |
 
 ### 配置
 
